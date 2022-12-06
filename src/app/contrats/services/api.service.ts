@@ -62,7 +62,7 @@ export class ApiService {
   getStats(): Observable<Array<IArchivePercentType>> {
     return this.http
       .get<Array<IArchivePercentType>>(
-        'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/ContartController/vData/percentArchiveStatus'
+        'https://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/ContartController/vData/percentArchiveStatus'
       )
       .pipe(map((d: Array<IArchivePercentType>) => d));
   }

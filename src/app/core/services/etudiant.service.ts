@@ -24,7 +24,7 @@ export class EtudiantService {
     return this.httpClient.get<etudiants[]>(`${this.url_apilist + this.filter + name}`);
   }
   getEtudiantByDepartment(id: number): Observable<etudiants[]> {
-    return this.httpClient.get<etudiants[]>(`${'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/DepartmentController/GetListOfEtudiantsByDepartment/' + id}`);
+    return this.httpClient.get<etudiants[]>(`${'https://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/DepartmentController/GetListOfEtudiantsByDepartment/' + id}`);
   }
   addEtudiant(e: etudiants) {
     return this.httpClient.post(this.url_apilist + 'ajouterEtudiant', e)
