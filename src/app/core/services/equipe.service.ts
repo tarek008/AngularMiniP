@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Equipe } from '../model/equipe';
 import { etudiants } from '../model/etudiants';
 import { stats } from '../model/stats';
@@ -11,64 +11,100 @@ import { stades } from '../model/stade';
   providedIn: 'root'
 })
 export class EquipeService {
-  public url=environment.urlG+'/EquipeController/'
-  public urlStad=environment.urlG+'/StadeController/'
+  public url = environment.urlG + '/EquipeController/'
+  public urlStad = environment.urlG + '/StadeController/'
 
 
-  public urlAff=this.url+'displayEquipes/'
-  public urlAdd=this.url+'addEquipe/' 
-  public urlGet=this.url+'displayEquipeById/' 
-  public urlUpd=this.url+'updateEquipe/'
-  public urlDel=this.url+'deleteEquipe/'
-  public urlStud=this.url+'getAllEtudiantsfrom1Equipe/' 
-  public urlStats=this.url+'countequipeparetudiant/' 
-  public urlfav=this.url+'favorite/'
-  public urlunfav=this.url+'unfavorite/' 
-  public urlmyfav=this.url+'myfavorites/' 
+  public urlAff = this.url + 'displayEquipes/'
+  public urlAdd = this.url + 'addEquipe/'
+  public urlGet = this.url + 'displayEquipeById/'
+  public urlUpd = this.url + 'updateEquipe/'
+  public urlDel = this.url + 'deleteEquipe/'
+  public urlStud = this.url + 'getAllEtudiantsfrom1Equipe/'
+  public urlStats = this.url + 'countequipeparetudiant/'
+  public urlfav = this.url + 'favorite/'
+  public urlunfav = this.url + 'unfavorite/'
+  public urlmyfav = this.url + 'myfavorites/'
 
-  public urldispStad=this.urlStad+'displayStades/'
-  public urlAddStad=this.urlStad+'addStade/' 
+  public urldispStad = this.urlStad + 'displayStades/'
+  public urlAddStad = this.urlStad + 'addStade/'
 
 
 
   constructor(private http: HttpClient) { }
 
-  getAllProduct(){
-    return this.http.get<Equipe[]>(this.urlAff)
+  getAllProduct() {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.get<Equipe[]>(this.urlAff, { "headers": headers })
   }
-  addEquipe(e:Equipe){
-    return this.http.post(this.urlAdd,e)
+  addEquipe(e: Equipe) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.post(this.urlAdd, e, { "headers": headers })
   }
-  getEquipeById(id:number){
-    return this.http.get<Equipe>(this.urlGet+id)
+  getEquipeById(id: number) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.get<Equipe>(this.urlGet + id, { "headers": headers })
   }
-  UpdateEquipe(e: Equipe){
-    return this.http.put(this.urlUpd,e)
+  UpdateEquipe(e: Equipe) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.put(this.urlUpd, e, { "headers": headers })
   }
-  DeleteEquipe(id: number){
-    return this.http.delete(this.urlDel+id)
+  DeleteEquipe(id: number) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.delete(this.urlDel + id, { "headers": headers })
   }
-  getStudEquipe(id: number){
-    return this.http.get<etudiants[]>(this.urlStud+id)
+  getStudEquipe(id: number) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.get<etudiants[]>(this.urlStud + id, { "headers": headers })
   }
-  getAllStats(){
+  getAllStats() {
     return this.http.get<stats[]>(this.urlStats)
   }
-  fav(id:number){
-    console.log(  id
+  fav(id: number) {
+    console.log(id
     );
-    return this.http.put(this.urlfav+id,null)
+    return this.http.put(this.urlfav + id, null)
   }
-  unfav(id:number){
-    return this.http.put(this.urlunfav,id)
+  unfav(id: number) {
+    return this.http.put(this.urlunfav, id)
   }
-  getAllfav(){
+  getAllfav() {
     return this.http.get<Equipe[]>(this.urlmyfav)
   }
-  getAllStads(){
+  getAllStads() {
     return this.http.get<stades[]>(this.urldispStad)
   }
-  addStad(s:stades){
-    return this.http.post(this.urlAddStad,s)
+  addStad(s: stades) {
+    return this.http.post(this.urlAddStad, s)
   }
 }

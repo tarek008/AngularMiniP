@@ -26,9 +26,14 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   postContrat(data: any) {
-    console.log(data)
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
     //return this.http.post<any>("http://localhost:3000/listContrats/", data)
-    return this.http.post<any>(this.urlAdd, data)
+    return this.http.post<any>(this.urlAdd, data, { "headers": headers })
 
   }
   getContrat() {
@@ -46,31 +51,57 @@ export class ApiService {
   //  return this.http.put<any>(this.urlUpdate + id, data);
   //}
   updateContrat(data: any) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
     return this.http.put<any>(this.urlUpdate, data);
   }
 
   DelContrat(id: number) {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
     //return this.http.get<any>("http://localhost:3000/listContrats/")
     return this.http.delete<any>(this.urlDel + id);
   }
   AddContratToStudent(idC: number, idE: number) {
-    return this.http.put<any>(this.urlACTS + idC + '/' + idE, {});
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.put<any>(this.urlACTS + idC + '/' + idE, {}, { "headers": headers });
 
   }
 
   getStudents() {
-    return this.http.get<Student[]>(this.urlAffStudent);
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.get<Student[]>(this.urlAffStudent, { "headers": headers });
   }
 
   exportPdfContrats(): Observable<Blob> {
+
     return this.http.get(this.urlexport, { responseType: 'blob' });
   }
 
   // ContratArchiveStats
   getStats(): Observable<Array<IArchivePercentType>> {
+
     return this.http
       .get<Array<IArchivePercentType>>(
-        'https://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/ContartController/vData/percentArchiveStatus'
+        'https://525b-197-25-191-19.eu.ngrok.io/SpringMVC/ContartController/vData/percentArchiveStatus'
       )
       .pipe(map((d: Array<IArchivePercentType>) => d));
   }
