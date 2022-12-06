@@ -7,34 +7,34 @@ import { etudiants } from '../model/etudiants';
   providedIn: 'root'
 })
 export class EtudiantService {
- public  url_apilist= environment.url ;
- getallquery='DisplayStudents' ;
- filter='existenceByName/';
-  constructor(private httpClient :HttpClient) {
+  public url_apilist = environment.url;
+  getallquery = 'DisplayStudents';
+  filter = 'existenceByName/';
+  constructor(private httpClient: HttpClient) {
     console.log(this.url_apilist);
 
-   }
-  getEtudiantsListe():Observable<etudiants[]>{
-    return this.httpClient.get<etudiants[]>(`${this.url_apilist+this.getallquery}`);
   }
-  geEtudiantById(id : number):Observable <etudiants>{
-    return this.httpClient.get<etudiants>(this.url_apilist+'DisplayEtudiantById/'+id);
+  getEtudiantsListe(): Observable<etudiants[]> {
+    return this.httpClient.get<etudiants[]>(`${this.url_apilist + this.getallquery}`);
   }
-  getEtudiantFiltredbyname(name:String):Observable<etudiants[]>{
-    return this.httpClient.get<etudiants[]>(`${this.url_apilist+this.filter+name}`);
+  geEtudiantById(id: number): Observable<etudiants> {
+    return this.httpClient.get<etudiants>(this.url_apilist + 'DisplayEtudiantById/' + id);
   }
-  getEtudiantByDepartment(id:number):Observable<etudiants[]>{
-    return this.httpClient.get<etudiants[]>(`${'http://localhost:8089/SpringMVC/DepartmentController/GetListOfEtudiantsByDepartment/'+id}`);
+  getEtudiantFiltredbyname(name: String): Observable<etudiants[]> {
+    return this.httpClient.get<etudiants[]>(`${this.url_apilist + this.filter + name}`);
   }
- addEtudiant(e:etudiants){
-    return this.httpClient.post(this.url_apilist+'ajouterEtudiant',e)
-}
-updateEtudiant(e:etudiants){
-  return this.httpClient.put(this.url_apilist+'updateStudentById',e)
-}
-deleteEtudiantByID(id:number ){
-   return this.httpClient.delete(this.url_apilist+'deletestudent/'+id);
-   console.log(id);
-}
+  getEtudiantByDepartment(id: number): Observable<etudiants[]> {
+    return this.httpClient.get<etudiants[]>(`${'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/DepartmentController/GetListOfEtudiantsByDepartment/' + id}`);
+  }
+  addEtudiant(e: etudiants) {
+    return this.httpClient.post(this.url_apilist + 'ajouterEtudiant', e)
+  }
+  updateEtudiant(e: etudiants) {
+    return this.httpClient.put(this.url_apilist + 'updateStudentById', e)
+  }
+  deleteEtudiantByID(id: number) {
+    return this.httpClient.delete(this.url_apilist + 'deletestudent/' + id);
+    console.log(id);
+  }
 
 }
