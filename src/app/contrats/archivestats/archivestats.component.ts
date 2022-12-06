@@ -16,7 +16,7 @@ export class ArchivestatsComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getStats().subscribe((result) => {
+    this.apiService.getStats().subscribe((result: any) => {
       this.chartData = result;
       if (this.chartData !== null) {
         for (let i = 0; i < this.chartData.length; i++) {
