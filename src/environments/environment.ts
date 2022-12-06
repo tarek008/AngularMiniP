@@ -5,11 +5,11 @@
 export const environment = {
   production: true,
 
-  urlG: 'http://localhost:8089/SpringMVC',
-  url: 'http://localhost:8089/SpringMVC/controllerEtudiant/',
-  urlDep: 'http://localhost:8089/SpringMVC/DepartmentController/',
-  urlEns: 'http://localhost:8089/SpringMVC/EnseignantController/',
-  urlCont: 'http://localhost:8089/SpringMVC'
+  urlG: 'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC',
+  url: 'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/controllerEtudiant/',
+  urlDep: 'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/DepartmentController/',
+  urlEns: 'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC/EnseignantController/',
+  urlCont: 'http://7e7a-197-25-191-19.eu.ngrok.io/SpringMVC'
 
 
 };
