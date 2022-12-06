@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IArchivePercentType } from '../Model/ArchivePercentType';
 import { Student } from '../Model/student';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +32,14 @@ export class ApiService {
 
   }
   getContrat() {
+    const headers = new HttpHeaders()
+
+      .set('content-type', 'application/json')
+      .set('ngrok-skip-browser-warning', '1231')
+
+      .set('Access-Control-Allow-Origin', '*');
     //return this.http.get<any>("http://localhost:3000/listContrats/")
-    return this.http.get<any>(this.urlAff);
+    return this.http.get<any>("https://525b-197-25-191-19.eu.ngrok.io/SpringMVC/ContartController/displayallcontrats/", { "headers": headers });
   }
   //  updateContrat(data: any, id: number) {
   //return this.http.get<any>("http://localhost:3000/listContrats/")
